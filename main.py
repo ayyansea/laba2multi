@@ -2,9 +2,9 @@ import os
 import sys
 import string
 
-#7 вариант - обход змейкой
+#7 вариант - обход змейкой (квадратный массив)
 
-data = open('data.txt', 'rw')
+data = open('data3.txt', 'r')
 txt = data.read()
 
 a = txt.splitlines()
@@ -19,53 +19,74 @@ for i in b:
     for j in range(len(i)):
         i[j] = int(i[j])
 
-yb = len(b)
-xb = len(b[0])
+num = len(b)
 
-n = 0 
-m = 0
-nt = 0 
-mt = 0
+def diagCount(num):
+    count = 2*num - 1
+    return count
 
-xstop = False
-ystop = False
-xmove = False
-ymove = False
-run = True
+dcount = diagCount(num)
 
 c = []
 
-if run == True:
-    if ystop == False:
-        if n != yb - 1 and m != 0:
-            if xmove == False and ymove == False:
-                print b[n][m]
-                c.append(b[n][m])
-                m += 1
-                xmove = True
-            elif xmove == True and ymove == False:
-                print b[n][m]
-                c.append(b[n][m])
-                n = m
-                m = 0
-                xmove = False
-                ymove = True
-            elif xmove == False and ymove == True:
-                print b[n][m]
-                c.append(b[n][m])
-                n += 1
-                xmove = True
-            elif xmove == True and ymove == True:
-                print b[n][m]
-                c.append(b[n][m])
-                m = n
-                n = 0
-                xmove = False
-                ymove = False
+n = 0
+m = 0
+
+dcount_1 = round(dcount/2 - 0.01) + 1 # до главной диагонали включительно
+dcount_2 = dcount_1 + 1 # оставшиеся диагонали
+
+for i in range(1, dcount_1 + 1):
+    if i % 2 != 0:
+        if i == 1:
+            n = 0
         else:
-            ystop = True
-    else:
-        run = False
+            n = i - 1
+        m = 0
+        for j in range(i):
+            if i == 1:
+                print(b[n][m])
+                m += 1
+            else:
+                print(b[n][m])
+                n -= 1
+                m += 1
+        print("\n")
+    elif i % 2 == 0:
+        n = 0
+        m = i - 1
+        for j in range(i):
+            print(b[n][m])
+            n += 1
+            m -= 1
+        print("\n")
+
+# смотрим диагонали после главной 
+m = 1
+
+for i in range(dcount_2, dcount + 1):
+    if i % 2 != 0:
+        if i != dcount:
+            n = num - 1
+            for j in range((dcount + 1) - i):
+                print(b[n][m])
+                n -= 1
+                m += 1
+            print("\n")
+        if i == dcount:
+            print(b[num - 1][num - 1])
+    elif i % 2 == 0:
+        m = num - 1
+        n += 2
+        for j in range((dcount + 1) - i):
+            print(b[n][m])
+            n += 1
+            m -= 1
+        print("\n")
+        m += 2
+
+
+
+
 
 
 

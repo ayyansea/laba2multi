@@ -4,7 +4,7 @@ import string
 
 #7 вариант - обход змейкой (квадратный массив)
 
-data = open('data3.txt', 'r')
+data = open('data.txt', 'r')
 txt = data.read()
 
 a = txt.splitlines()
@@ -44,10 +44,10 @@ for i in range(1, dcount_1 + 1):
         m = 0
         for j in range(i):
             if i == 1:
-                print(b[n][m])
+                c.append(b[n][m])
                 m += 1
             else:
-                print(b[n][m])
+                c.append(b[n][m])
                 n -= 1
                 m += 1
         print("\n")
@@ -55,7 +55,7 @@ for i in range(1, dcount_1 + 1):
         n = 0
         m = i - 1
         for j in range(i):
-            print(b[n][m])
+            c.append(b[n][m])
             n += 1
             m -= 1
         print("\n")
@@ -68,23 +68,24 @@ for i in range(dcount_2, dcount + 1):
         if i != dcount:
             n = num - 1
             for j in range((dcount + 1) - i):
-                print(b[n][m])
+                c.append(b[n][m])
                 n -= 1
                 m += 1
             print("\n")
         if i == dcount:
-            print(b[num - 1][num - 1])
+            c.append(b[num - 1][num - 1])
     elif i % 2 == 0:
         m = num - 1
         n += 2
         for j in range((dcount + 1) - i):
-            print(b[n][m])
+            c.append(b[n][m])
             n += 1
             m -= 1
         print("\n")
         m += 2
 
 
+print(c)
 
 
 

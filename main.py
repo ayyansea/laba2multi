@@ -85,7 +85,9 @@ for i in range(dcount_2, dcount + 1):
         m += 2
 
 
-print(c)
+with open("output.txt", 'w') as f:
+    for item in c:
+        f.write("%s\n" % str(item))
 
 
 
